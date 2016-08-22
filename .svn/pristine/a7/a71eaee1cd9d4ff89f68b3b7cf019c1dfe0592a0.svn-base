@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<widget id="A6925440802968" version="0.0.1"> 
+  <name>DaiDaiWoShiChang</name>  
+  <description/>  
+  <author email="1650208026@qq.com" href="http://www.apicloud.com">我爱我窝火爆</author>  
+  <content src="index.html"/>  
+  <preference name="appBackground" value="rgba(0,0,0,0)"/>  
+  <preference name="windowBackground" value="rgba(0,0,0,0)"/>  
+  <preference name="frameBackgroundColor" value="rgba(0,0,0,0)"/>  
+  <preference name="autoLaunch" value="true"/>  
+  <preference name="autoUpdate" value="true"/>  
+  <preference name="smartUpdate" value="false"/>  
+  <preference name="debug" value="true"/>  
+  <preference name="statusBarAppearance" value="true"/>  
+  <permission name="location"/>  
+  <permission name="internet"/>  
+  <feature name="bMap"> 
+    <param name="android_api_key" value="9OBDZNhou2QMuvsKGhCBgnnGlG0j3GOh"/>  
+    <param name="ios_api_key " value="dlUB0dG4Z4Qk1Dia1OZQXmXQFgaCVfUS"/> 
+  </feature>  
+  <feature name="baiduNavigation"> 
+    <param name="android_api_key " value="9OBDZNhou2QMuvsKGhCBgnnGlG0j3GOh"/>  
+    <param name="ios_api_key " value="dlUB0dG4Z4Qk1Dia1OZQXmXQFgaCVfUS"/> 
+  </feature>  
+  <access origin="*"/> 
+</widget>

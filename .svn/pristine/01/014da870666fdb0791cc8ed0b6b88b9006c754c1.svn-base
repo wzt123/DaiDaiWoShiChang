@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<RepositoryCustomSettings xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <AutoRefresh>true</AutoRefresh>
+  <AutoRefreshRemotes>true</AutoRefreshRemotes>
+  <DraftCommitMsg />
+  <IncomingSavedCount>0</IncomingSavedCount>
+  <LastCheckedRemotes>2016-08-12T17:49:26.157403+08:00</LastCheckedRemotes>
+  <LastUsedView>FileStatus</LastUsedView>
+  <LogBranchFilterIndex>0</LogBranchFilterIndex>
+  <OutgoingSavedCount>0</OutgoingSavedCount>
+  <RemoteProjectLinks>
+    <RepositoryRemoteProjectLink>
+      <BaseUrl>https://www.github.com</BaseUrl>
+      <Identifier>wzt123/DaiDaiWoShiChang</Identifier>
+      <RemoteName>origin</RemoteName>
+      <Type>GitHub</Type>
+      <Username>wzt123</Username>
+    </RepositoryRemoteProjectLink>
+  </RemoteProjectLinks>
+  <SidebarExpandedItems>
+    <string>文件状态</string>
+    <string>分支</string>
+    <string>远程</string>
+  </SidebarExpandedItems>
+  <SidebarWidth>140</SidebarWidth>
+  <SubtreeLinks />
+</RepositoryCustomSettings>
