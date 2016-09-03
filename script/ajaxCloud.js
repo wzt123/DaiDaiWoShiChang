@@ -231,7 +231,7 @@ function ajaxToAPICloud(appId, appKey, method, classInfo, callback, filter){
                 url += "?" + filter;
             }
 
-            ajaxCore(appId, encryptKey, url, method, body, callback);
+            ajaxCore(appId, encryptKey, url, method, JSON.stringify(body), callback);
         }, filter);
 
         // --------------------------------------------------
@@ -257,7 +257,7 @@ function ajaxToAPICloud(appId, appKey, method, classInfo, callback, filter){
 
         function ajaxCore(appId, encryptKey, url, method, body, callback){
             var data = {
-                body: JSON.stringify(body)
+                body: body
             };
 
             if("get" == method || "delete" == method){

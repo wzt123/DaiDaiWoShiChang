@@ -66,13 +66,21 @@
 				<div class="aui-form">
 					<div class="aui-form">
 						<div class="aui-input-row">
-							<span class="aui-input-addon">商品信息</span>
-							<textarea name="content" class="aui-input" id="msg" placeholder="形容下商品呗~"></textarea>
+							<span class="aui-input-addon">市场名字</span>
+							<textarea name="content" class="aui-input" id="name" placeholder="请输入营业执照上的市场名字"></textarea>
 						</div>
 					</div>
 					<div class="aui-input-row">
-						<span class="aui-input-addon">蔬菜价格</span>
-						<input type="tel" class="aui-input" placeholder="蔬菜价格（/斤）" id="price">
+						<span class="aui-input-addon">登录电话</span>
+						<input type="tel" class="aui-input" placeholder="登录电话" id="tel">
+					</div>
+					<div class="aui-input-row">
+						<span class="aui-input-addon">密码</span>
+						<input type="password" class="aui-input" placeholder="请输入密码" id="pwd1">
+					</div>
+					<div class="aui-input-row">
+						<span class="aui-input-addon">确认密码</span>
+						<input type="password" class="aui-input" placeholder="请再次输入密码" id="pwd2">
 					</div>
 					<!--<div class="aui-input-row">
 					<span class="aui-input-addon">图文详情</span>
@@ -80,9 +88,10 @@
 					</div>-->
 					<div class="aui-input-row" style="padding: 10px 0;">
 						<span class="aui-input-addon">当前坐标为市场坐标</span>
-						<input type="checkbox" class="aui-switch aui-pull-right" id="locationC" checked="">
+						<input type="checkbox" class="aui-switch aui-pull-right" id="getlocation" checked="">
 					</div>
 					<div class="aui-content">
+						<span class="aui-input-addon">上传营业执照</span>
 						<ul class="aui-list-view aui-grid-view" id="imgslist">
 							<li class="aui-list-view-cell aui-img aui-col-xs-4" id="addpic">
 								<img class="aui-img-object" src="../image/add.jpg" id="addimg">
@@ -225,11 +234,6 @@
 		// data：上传的文件
 		// callback：上传成功返回地址
 		function uploadFile(data) {
-			//			uploadAndShow(data);
-			//			function f2(){
-			//　　　　　　		imgspath = data;
-			//				return imgspath;
-			//			};
 			//			return f2;
 		}
 
@@ -431,36 +435,22 @@
 				});
 			}
 			var classInfo = {
-				className : "VG_today",
+				className : "user",
 				fields : [{
 					"name" : "pic",
 					"value" : 'imgPath',
 					"type" : "file",
 					"filename" : 'arr[0]',
-					//					VGmsg : VGmsg,
-					//					price : price,
-					//					lon : lon,
-					//					lat : lat
 				}, {
 					"name" : "VGmsg",
 					"value" : VGmsg
 				}, {
 					"name" : "price",
 					"value" : price
-				}
-				]
+				}]
 			}
 			var vgid;
 			var callback = function(ret, err) {
-				//				if (ret) {
-				//					api.hideProgress();
-				////					showPhotos(10);
-				//					api.alert({
-				//						msg : "成功：" + JSON.stringify(ret)
-				//					}, function(ret, err) {
-				//						//coding...
-				//					});
-				//				}
 				if (ret && ret.body.id) {
 					//					showPhotos(10);
 					api.alert({
@@ -484,36 +474,6 @@
 			}, function(ret, err) {
 				//coding...
 			});
-			//			if (getlocation.checked) {
-			//				bMap.getLocation({
-			//					accuracy : '10m',
-			//					autoStop : true,
-			//					filter : 1
-			//				}, function(ret, err) {
-			//					if (ret.status) {
-			//						model.updateById({
-			//							class : 'VG_today',
-			//							id : vgid,
-			//							value : {
-			//								VGmsg : VGmsg,
-			//								price : price,
-			//								lon : ret.lon,
-			//								lat : ret.lat
-			//							}
-			//						}, function(ret, err) {
-			//							//coding...
-			//							api.hideProgress();
-			//						});
-			//						api.hideProgress();
-			//					} else {
-			//						alert(err.code);
-			//						api.hideProgress();
-			//					}
-			//				});
-			//			}
-		}
-
-		function uploadData() {
 		}
 	</script>
 </html>

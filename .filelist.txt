@@ -59,6 +59,7 @@
 /A6925441167162/html/user_zhmm.html
 /A6925440802968/script/zepto.min.js
 /A6925441167162/html/user_login_body.html
+/A6925440802968/html/reg_body.html
 /A6925440802968/css/aui.css
 /A6925440802968/html/user_login_frm.html
 /A6925441167162/css/style.css
@@ -72,6 +73,7 @@
 /A6925440802968/image/bottombtn0102.png
 /A6925440802968/index.html
 /A6925440802968/css/modifyPwd.css
+/A6925440802968/html/reg_head.html
 /A6925441167162/html/frame1.html
 /A6925441167162/image/bottombtn0201.png
 /A6925440802968/css/idangerous.swiper.css
