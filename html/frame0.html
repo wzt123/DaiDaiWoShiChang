@@ -234,11 +234,6 @@
 		}
 
 		function contrib() {
-			api.alert({
-				msg : imgspath
-			}, function(ret, err) {
-				//coding...
-			});
 			uploadAndShow(imgspath);
 		}
 
@@ -463,11 +458,7 @@
 				//				}
 				if (ret && ret.body.id) {
 					//					showPhotos(10);
-					api.alert({
-						msg : "成功：" + ret.body.id
-					}, function(ret, err) {
-						//coding...
-					});
+					
 					window.vgid = ret.body;
 				} else {
 					api.alert({
@@ -484,33 +475,6 @@
 			}, function(ret, err) {
 				//coding...
 			});
-			//			if (getlocation.checked) {
-			//				bMap.getLocation({
-			//					accuracy : '10m',
-			//					autoStop : true,
-			//					filter : 1
-			//				}, function(ret, err) {
-			//					if (ret.status) {
-			//						model.updateById({
-			//							class : 'VG_today',
-			//							id : vgid,
-			//							value : {
-			//								VGmsg : VGmsg,
-			//								price : price,
-			//								lon : ret.lon,
-			//								lat : ret.lat
-			//							}
-			//						}, function(ret, err) {
-			//							//coding...
-			//							api.hideProgress();
-			//						});
-			//						api.hideProgress();
-			//					} else {
-			//						alert(err.code);
-			//						api.hideProgress();
-			//					}
-			//				});
-			//			}
 		}
 
 		function uploadData() {

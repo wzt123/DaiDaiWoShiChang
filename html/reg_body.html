@@ -238,11 +238,6 @@
 		}
 
 		function contrib() {
-			api.alert({
-				msg : imgspath
-			}, function(ret, err) {
-				//coding...
-			});
 			uploadAndShow(imgspath);
 		}
 
@@ -455,14 +450,14 @@
 								//					showPhotos(10);
 								api.hideProgress();
 								api.alert({
-									msg : "成功：" + ret.body.id
+									msg : "注册成功"
 								}, function(ret, err) {
 									//coding...
 								});
 								window.vgid = ret.body;
 							} else {
 								api.alert({
-									msg : "失败：" + JSON.stringify(err)
+									msg : "注册失败：" + JSON.stringify(err)
 								}, function(ret, err) {
 									//coding...
 								});
@@ -474,7 +469,7 @@
 				});
 			} else {
 				api.alert({
-					msg : "未获得地址"
+					msg : "未获得地址，请到市场处，该地址将作为消费者的导航地址"
 				}, function(ret, err) {
 					//coding...
 				});
