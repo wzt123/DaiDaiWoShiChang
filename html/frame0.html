@@ -391,90 +391,88 @@
 		function uploadAndShow(imgPath) {
 			var islogin = $api.getStorage('islogin');
 			if (islogin) {
-			} else {
-			}//判断登录
-			api.showProgress({
-				title : '正在上传...'
-			});
-			//相关数据获取
-			var method = "post";
-			var price = $api.byId('price').value;
-			var VGmsg = $api.byId('msg').value;
-			var lon;
-			var lat;
-			var arr = new Array();
-			arr = imgPath.split(".")
-			var userid = $api.getStorage('userid');
-			//获得市场坐标。。
-			var locationC = $api.byId('locationC');
-			if (locationC.checked) {
-				bMap.getLocation({
-					accuracy : '10m',
-					autoStop : true,
-					filter : 1
-				}, function(ret, err) {
-					if (ret.status) {
-						lon = ret.lon;
-						lat = ret.lat;
-					}
+				api.showProgress({
+					title : '正在上传...'
 				});
-			} else {
-				api.alert({
-					msg : "未获得地址"
-				}, function(ret, err) {
-					//coding...
-				});
-			}
-			var classInfo = {
-				className : "VG_today",
-				fields : [{
-					"name" : "pic",
-					"value" : 'imgPath',
-					"type" : "file",
-					"filename" : 'arr[0]',
-					//					VGmsg : VGmsg,
-					//					price : price,
-					//					lon : lon,
-					//					lat : lat
-				}, {
-					"name" : "VGmsg",
-					"value" : VGmsg
-				}, {
-					"name" : "price",
-					"value" : price
-				}
-				]
-			}
-			var vgid;
-			var callback = function(ret, err) {
-				//				if (ret) {
-				//					api.hideProgress();
-				////					showPhotos(10);
-				//					api.alert({
-				//						msg : "成功：" + JSON.stringify(ret)
-				//					}, function(ret, err) {
-				//						//coding...
-				//					});
-				//				}
-				if (ret && ret.body.id) {
-					//					showPhotos(10);
-					
-					window.vgid = ret.body;
+				//相关数据获取
+				var method = "post";
+				var price = $api.byId('price').value;
+				var VGmsg = $api.byId('msg').value;
+				var lon;
+				var lat;
+				var arr = new Array();
+				arr = imgPath.split(".")
+				var userid = $api.getStorage('userid');
+				//获得市场坐标。。
+				var locationC = $api.byId('locationC');
+				if (locationC.checked) {
+					bMap.getLocation({
+						accuracy : '10m',
+						autoStop : true,
+						filter : 1
+					}, function(ret, err) {
+						if (ret.status) {
+							lon = ret.lon;
+							lat = ret.lat;
+						}
+					});
 				} else {
 					api.alert({
-						msg : "失败：" + JSON.stringify(err)
+						msg : "未获得地址"
 					}, function(ret, err) {
 						//coding...
 					});
-					api.hideProgress();
 				}
-			}
-			ajaxToAPICloud(appId, appKey, method, classInfo, callback)
-			api.alert({
-				msg : vgid
-			}, function(ret, err) {
-				//coding...
-			});
+				var classInfo = {
+					className : "VG_today",
+					fields : [{
+						"name" : "pic",
+						"value" : 'imgPath',
+						"type" : "file",
+						"filename" : 'arr[0]',
+						//					VGmsg : VGmsg,
+						//					price : price,
+						//					lon : lon,
+						//					lat : lat
+					}, {
+						"name" : "VGmsg",
+						"value" : VGmsg
+					}, {
+						"name" : "price",
+						"value" : price
+					}]
+				}
+				var vgid;
+				var callback = function(ret, err) {
+					//				if (ret) {
+					//					api.hideProgress();
+					////					showPhotos(10);
+					//					api.alert({
+					//						msg : "成功：" + JSON.stringify(ret)
+					//					}, function(ret, err) {
+					//						//coding...
+					//					});
+					//				}
+					if (ret && ret.body.id) {
+						//					showPhotos(10);
+						window.vgid = ret.body;
+					} else {
+						api.alert({
+							msg : "失败：" + JSON.stringify(err)
+						}, function(ret, err) {
+							//coding...
+						});
+						api.hideProgress();
+					}
+				}
+				ajaxToAPICloud(appId, appKey, method, classInfo, callback);
+			} else {
+				api.alert({
+					msg : "亲，要先登录"
+				}, function(ret, err) {
+					//coding...
+				});
+			}//判断登录
 		}
 
 		function uploadData() {
