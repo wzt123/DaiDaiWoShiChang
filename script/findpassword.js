@@ -30,8 +30,8 @@ function ensure() {
 	ajaxRequest(loginUlr, 'get', JSON.stringify(bodyParam), function(ret, err) {
 		if (ret) {
 			//$api.setStorage('islogin', 1);
-			//$api.setStorage('uid', ret.userId);
-			//$api.setStorage('token', ret.id);
+			$api.setStorage('uid', ret.userId);
+			$api.setStorage('token', ret.id);
 			$api.setStorage('username', ret.username);
 
 			$api.setStorage('email', ret.email);
