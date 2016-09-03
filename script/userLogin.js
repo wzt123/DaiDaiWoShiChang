@@ -30,10 +30,9 @@ function ensure() {
 	ajaxRequest(loginUlr, 'post', JSON.stringify(bodyParam), function(ret, err) {
 		if (ret) {
 			$api.setStorage('islogin', 1);
-			$api.setStorage('uid', ret.userId);
-			$api.setStorage('token', ret.id);
+			$api.setStorage('uid',ret.id);
 			$api.setStorage('username', ret.username);
-			$api.setStorage('email', ret.email);
+			$api.setStorage('tel', ret.tel);
 			setTimeout(function() {
 				api.closeWin();
 			}, 100);
@@ -55,7 +54,7 @@ function ensure() {
 			});
 		} else {
 			api.alert({
-				msg : "手机号或密码错误"
+				msg : "手机号或密码错误:"+JSON.stringify(err)
 			});
 		}
 		api.hideProgress();

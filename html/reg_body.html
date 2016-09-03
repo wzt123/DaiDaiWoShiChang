@@ -432,7 +432,7 @@
 								"name" : "username",
 								"value" : marketname
 							}, {
-								"name" : "tel",
+								"name" : "email",
 								"value" : tel
 							}, {
 								"name" : "password",
@@ -454,7 +454,9 @@
 								}, function(ret, err) {
 									//coding...
 								});
-								window.vgid = ret.body;
+								api.closeToWin({
+	                                name: 'root'
+                                });
 							} else {
 								api.alert({
 									msg : "注册失败：" + JSON.stringify(err)
