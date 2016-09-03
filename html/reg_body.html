@@ -67,7 +67,7 @@
 					<div class="aui-form">
 						<div class="aui-input-row">
 							<span class="aui-input-addon">市场名字</span>
-							<textarea name="content" class="aui-input" id="name" placeholder="请输入营业执照上的市场名字"></textarea>
+							<textarea name="content" class="aui-input" id="marketname" placeholder="请输入营业执照上的市场名字"></textarea>
 						</div>
 					</div>
 					<div class="aui-input-row">
@@ -88,7 +88,7 @@
 					</div>-->
 					<div class="aui-input-row" style="padding: 10px 0;">
 						<span class="aui-input-addon">当前坐标为市场坐标</span>
-						<input type="checkbox" class="aui-switch aui-pull-right" id="getlocation" checked="">
+						<input type="checkbox" class="aui-switch aui-pull-right" id="locationC" checked="">
 					</div>
 					<div class="aui-content">
 						<span class="aui-input-addon">上传营业执照</span>
@@ -407,13 +407,14 @@
 			});
 			//相关数据获取
 			var method = "post";
-			var price = $api.byId('price').value;
-			var VGmsg = $api.byId('msg').value;
+			var marketname = $api.byId('marketname').value;
+			var tel = $api.byId('tel').value;
+			var pwd1 = $api.byId('pwd1').value;
+			var pwd2 = $api.byId('pwd2').value;
 			var lon;
 			var lat;
 			var arr = new Array();
 			arr = imgPath.split(".")
-			var userid = $api.getStorage('userid');
 			//获得市场坐标。。
 			var locationC = $api.byId('locationC');
 			if (locationC.checked) {
@@ -425,6 +426,50 @@
 					if (ret.status) {
 						lon = ret.lon;
 						lat = ret.lat;
+						var classInfo = {
+							className : "user",
+							fields : [{
+								"name" : "pic",
+								"value" : imgPath,
+								"type" : "file",
+								"filename" : arr[0],
+							}, {
+								"name" : "username",
+								"value" : marketname
+							}, {
+								"name" : "tel",
+								"value" : tel
+							}, {
+								"name" : "password",
+								"value" : pwd2
+							}, {
+								"name" : "lon",
+								"value" : lon
+							}, {
+								"name" : "lat",
+								"value" : lat
+							}]
+						}
+						var callback = function(ret, err) {
+							if (ret && ret.body.id) {
+								//					showPhotos(10);
+								api.hideProgress();
+								api.alert({
+									msg : "成功：" + ret.body.id
+								}, function(ret, err) {
+									//coding...
+								});
+								window.vgid = ret.body;
+							} else {
+								api.alert({
+									msg : "失败：" + JSON.stringify(err)
+								}, function(ret, err) {
+									//coding...
+								});
+								api.hideProgress();
+							}
+						}
+						ajaxToAPICloud(appId, appKey, method, classInfo, callback)
 					}
 				});
 			} else {
@@ -434,46 +479,6 @@
 					//coding...
 				});
 			}
-			var classInfo = {
-				className : "user",
-				fields : [{
-					"name" : "pic",
-					"value" : 'imgPath',
-					"type" : "file",
-					"filename" : 'arr[0]',
-				}, {
-					"name" : "VGmsg",
-					"value" : VGmsg
-				}, {
-					"name" : "price",
-					"value" : price
-				}]
-			}
-			var vgid;
-			var callback = function(ret, err) {
-				if (ret && ret.body.id) {
-					//					showPhotos(10);
-					api.alert({
-						msg : "成功：" + ret.body.id
-					}, function(ret, err) {
-						//coding...
-					});
-					window.vgid = ret.body;
-				} else {
-					api.alert({
-						msg : "失败：" + JSON.stringify(err)
-					}, function(ret, err) {
-						//coding...
-					});
-					api.hideProgress();
-				}
-			}
-			ajaxToAPICloud(appId, appKey, method, classInfo, callback)
-			api.alert({
-				msg : vgid
-			}, function(ret, err) {
-				//coding...
-			});
 		}
 	</script>
 </html>
