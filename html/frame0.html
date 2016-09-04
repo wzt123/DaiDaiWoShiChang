@@ -383,6 +383,7 @@
 				var price = $api.byId('price').value;
 				var VGmsg = $api.byId('msg').value;
 				var userid = $api.getStorage('uid');
+				var username = $api.getStorage('username'); 
 				var lon;
 				var lat;
 				var arr = new Array();
@@ -406,9 +407,11 @@
 					}, {
 						"name" : "userid",
 						"value" : userid
+					}, {
+						"name" : "marketname",
+						"value" : username
 					}]
 				}
-				var vgid;
 				var callback = function(ret, err) {
 					if (ret && ret.body.id) {
 						api.hideProgress();
