@@ -384,8 +384,7 @@
 				var VGmsg = $api.byId('msg').value;
 				var userid = $api.getStorage('uid');
 				var username = $api.getStorage('username'); 
-				var lon;
-				var lat;
+				var date = new Date().Format("yyyy-MM-dd");
 				var arr = new Array();
 				arr = imgPath.split(".")
 				var userid = $api.getStorage('uid');
@@ -398,6 +397,9 @@
 						"value" : imgPath,
 						"type" : "file",
 						"filename" : arr[0],
+					}, {
+						"name" : "creatTime",
+						"value" : date
 					}, {
 						"name" : "VGmsg",
 						"value" : VGmsg
