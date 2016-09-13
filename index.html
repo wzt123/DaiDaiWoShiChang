@@ -68,7 +68,7 @@
 					<li class="border-b active" >
 						今日特价
 					</li>
-					<li class="border-b" >
+					<li class="border-b"onclick="setting()" >
 						个人中心
 					</li>
 				</ul>
@@ -142,4 +142,12 @@
 			index : index
 		});
 	}
+	function setting() {
+			api.openWin({
+				name : 'setting',
+				url : './html/setting.html',
+				opaque : true,
+				vScrollBarEnabled : false
+			});
+		}
 </script>
