@@ -30,9 +30,6 @@
 				border: none;
 				outline: none;
 			}
-			/*.form-btn button:active {
-				background: rgba(255,152,0,0.8) !important;
-			}*/
     </style>
 </head>
 <body>
@@ -42,11 +39,11 @@
                 <ul class="info shadow">
 	                <li class="nickname">
 	                	{{? it.nickname }}
-	                		<a tapmode="" onclick="modifyNick('{{=it.username}}');">
+	                		<a >
 		                    	昵称<em>{{=it.username}}</em>
 		                	</a>
 		                {{??}}
-		                	<a tapmode="" onclick="modifyNick('{{=it.username}}');">
+		                	<a >
 		                    	昵称<em>{{=it.username}}</em>
 		                	</a>
 	                	{{?}}
@@ -68,11 +65,11 @@
             </script>
             <div id="content"></div>            
             <ul class="more shadow">
-            <li class="modify"><a tapmode="" onclick="address();">收货地址</a></li>
-                 <li class="modify"><a tapmode="" onclick="modifyPwd();">修改密码</a></li>
+            <li class="modify"><a tapmode="" onclick="">收货地址</a></li>
+                 <li class="modify"><a tapmode="" onclick="">修改密码</a></li>
                  <li class="clear" tapmode="" onclick="clearData();"><a>清理缓存<em>1M</em></a></li>
                  <li class="update"><a>检测新版本<em>已经是最新版本</em></a></li>
-                 <li class="about" tapmode="" onclick="openAbout();"><a>关于我们</a></li>
+                 <li class="about" tapmode="" onclick=""><a>关于我们</a></li>
             </ul> 
             <!--<div id="loginOut">
                 <a class="btn" tapmode="active" onclick='loginOut();'>退出登录</a>
