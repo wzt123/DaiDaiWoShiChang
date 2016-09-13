@@ -9,7 +9,7 @@ function ensure() {
 	var pwd = $api.byId('password').value;
 	if (email.length == 0) {
 		api.alert({
-			msg : "手机号不能为空"
+			msg : "邮箱不能为空"
 		});
 		return
 	} else if (pwd.length == 0) {
@@ -55,7 +55,7 @@ function ensure() {
 			});
 		} else {
 			api.alert({
-				msg : "手机号或密码错误:"+JSON.stringify(err)
+				msg : "邮箱或密码错误:"+JSON.stringify(err)
 			});
 		}
 		api.hideProgress();
