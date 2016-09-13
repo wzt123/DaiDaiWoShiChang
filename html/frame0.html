@@ -51,14 +51,14 @@
 				-webkit-transform: scale(0.5);
 			}
 			/*.aui-btn {
-				padding: 5px 30px;
-			}*/
+			 padding: 5px 30px;
+			 }*/
 			.form-btn {
 				padding: 30px 30px 15px 30px;
 			}
-			.aui-btn-ff9800  {
-				background: #ff9800  !important;
-				color:white !important;
+			.aui-btn-ff9800 {
+				background: #ff9800 !important;
+				color: white !important;
 				border: none;
 				outline: none;
 			}
@@ -70,8 +70,8 @@
 				<div class="aui-form">
 					<div class="aui-form">
 						<div class="aui-input-row">
-							<span class="aui-input-addon">商品信息</span>
-							<textarea name="content" class="aui-input" id="msg" placeholder="形容下商品呗~"></textarea>
+							<span class="aui-input-addon">内容</span>
+							<textarea name="content" class="aui-content" id="msg" placeholder="说点啥帮助我们完善呗~"></textarea>
 						</div>
 					</div>
 					<div class="aui-input-row">
@@ -228,7 +228,6 @@
 		// url：上传的url地址
 		// data：上传的文件
 		// callback：上传成功返回地址
-
 		function contrib() {
 			uploadAndShow(imgspath);
 		}
@@ -356,9 +355,18 @@
 												// ########################################
 												// ################### 上传图片 #########################
 												window.imgspath = compressImg;
-												});
+											});
 										}
 									}
+									var li_num = document.getElementById("imgslist").getElementsByTagName("li").length;
+									if (li_num >= 1) {
+										var addimg = $api.byId('addimg');
+										addimg.src = "";
+									}
+								} else {
+									api.toast({
+										msg : '没有选择，或者选择出错'
+									});
 								}
 							});
 							break;
@@ -383,13 +391,12 @@
 				var price = $api.byId('price').value;
 				var VGmsg = $api.byId('msg').value;
 				var userid = $api.getStorage('uid');
-				var username = $api.getStorage('username'); 
+				var username = $api.getStorage('username');
 				var date = new Date().Format("yyyy-MM-dd");
 				var arr = new Array();
-				arr = imgPath.split(".")
+				arr = imgPath.split(".");
 				var userid = $api.getStorage('uid');
 				//获得市场坐标。。
-				
 				var classInfo = {
 					className : "VG_today",
 					fields : [{
@@ -418,10 +425,10 @@
 					if (ret && ret.body.id) {
 						api.hideProgress();
 						api.alert({
-                        msg:"广播成功"
-                        },function(ret,err){
-                        	//coding...
-                        });
+							msg : "广播成功"
+						}, function(ret, err) {
+							//coding...
+						});
 					} else {
 						api.alert({
 							msg : "失败：" + JSON.stringify(err)

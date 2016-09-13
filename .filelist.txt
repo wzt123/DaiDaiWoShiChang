@@ -237,6 +237,7 @@
 /A6925440802968/image/image/image/wechat_pay.png
 /A6925440802968/image/image/image/image/star.png
 /A6925440802968/image/image/my_wallet_user_icon_normal.png
+/A6925440802968/html/frame2.html
 /A6925440802968/image/image/84.png
 /A6925440802968/html/frame0.html
 /A6925440802968/image/image/loading_more.gif

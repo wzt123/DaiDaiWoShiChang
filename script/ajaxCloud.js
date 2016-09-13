@@ -41,7 +41,6 @@ function ajaxToAPICloud(appId, appKey, method, classInfo, callback, filter){
         if("function" !== typeof callback){
             return;
         }
-
         callback(ret, err);
     }
 
@@ -153,7 +152,6 @@ function ajaxToAPICloud(appId, appKey, method, classInfo, callback, filter){
                     }
                 }
             }
-
             if(fileField){
                 var url =   baseUrl + "file";
                 var method = "post";
