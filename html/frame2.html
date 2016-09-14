@@ -16,7 +16,7 @@
 </head>	
 <body>	
         <h1 class="title1">带带我</h1>
-        <p class="title2">轻松注册“带带我”，即可立即推出您心爱的商铺哦~</p>	
+        <p class="title2" onclick="setting()">轻松注册“带带我”，即可立即推出您心爱的商铺哦~</p>	
         <div>
         <div class="aui-btn aui-btn-warning aui-btn-outlined title3" onclick="user_login();" id="requestLogin">点击登陆</div>
         <script id="login" type="text/x-dot-template">
@@ -41,6 +41,14 @@
 	<script type="text/javascript" src="../script/common.js"></script>
 	<script type="text/javascript" src="../script/zepto.min.js"></script>
 	<script type="text/javascript">
+	function setting() {
+			api.openWin({
+				name : 'setting',
+				url : './setting.html',
+				opaque : true,
+				vScrollBarEnabled : false
+			});
+		}
 		function modifyNick(name){
 		}
 		function user_login() {
