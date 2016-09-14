@@ -6,9 +6,14 @@
 	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>	
 	<link rel="stylesheet" type="text/css" href="../css/aui.css" />		   
     <style type="text/css">
-        body {background-image:url(../image/ucenter_bg.png);}
-        .title1{margin-top: 30%;color:#00ffff ;text-align: center;font-size:30px;}	
-        .title2{margin-top: 10%;color:#90EE90 ;text-align: center;font-size:larger;}
+        body {background-image:url(../image/bg.jpg);
+              background-size: 100%;
+              background-attachment:fixed;
+              background-position:center;
+              }
+        .title1{margin-top: 25%;color:white ;text-align: center;font-size:50px;}	
+        .title2{margin-top: 10%;color:white ;text-align: center;font-size:larger;}
+        .title4{margin-top: 5%;color:white ;text-align: center;font-size:larger;}
         .title3{margin-top: 15%;margin-left:35%;font-size:18px;}
         .gender{margin-left:35%;color: green;}
         .nickname{margin-left:35%;color: green;}
@@ -16,8 +21,9 @@
 </head>	
 <body>	
         <h1 class="title1">带带我</h1>
-        <p class="title2" onclick="setting()">轻松注册“带带我”，即可立即推出您心爱的商铺哦~</p>	
-        <div>
+        <p class="title2">轻松注册“带带我”，即可立即</p>	
+        <p class="title4">推出您心爱的商铺哦~</p>
+        <div>	
         <div class="aui-btn aui-btn-warning aui-btn-outlined title3" onclick="user_login();" id="requestLogin">点击登陆</div>
         <script id="login" type="text/x-dot-template">
 			<!--	<ul class="info shadow">-->
