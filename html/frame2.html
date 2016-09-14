@@ -1,0 +1,139 @@
+<!DOCTYPE html>	
+<html>	
+<head>	
+	<meta charset="utf-8">	
+	<title>frame</title>	
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>	
+	<link rel="stylesheet" type="text/css" href="../css/aui.css" />		   
+    <style type="text/css">
+        body {background-image:url(../image/ucenter_bg.png);}
+        .title1{margin-top: 30%;color:#00ffff ;text-align: center;font-size:30px;}	
+        .title2{margin-top: 10%;color:#90EE90 ;text-align: center;font-size:larger;}
+        .title3{margin-top: 15%;margin-left:35%;font-size:18px;}
+        .gender{margin-left:35%;color: green;}
+        .nickname{margin-left:35%;color: green;}
+    </style>	
+</head>	
+<body>	
+        <h1 class="title1">带带我</h1>
+        <p class="title2" onclick="setting()">轻松注册“带带我”，即可立即推出您心爱的商铺哦~</p>	
+        <div>
+        <div class="aui-btn aui-btn-warning aui-btn-outlined title3" onclick="user_login();" id="requestLogin">点击登陆</div>
+        <script id="login" type="text/x-dot-template">
+			<!--	<ul class="info shadow">-->
+				<li class="nickname">				
+				<a tapmode="" onclick="modifyNick('{{=it.username}}');">
+				<em>{{=it.username}}</em>
+				</a>
+				</li>
+				<li class="gender">				
+				<a>
+				<em>{{=it.email}}</em>
+				</a>				
+				</li>
+				<!--</ul>-->
+			</script>
+			<div id="inclu"></div>
+        </div>
+</body>	
+    <script type="text/javascript" src="../script/api.js"></script>
+	<script type="text/javascript" src="../script/doT.min.js"></script>
+	<script type="text/javascript" src="../script/common.js"></script>
+	<script type="text/javascript" src="../script/zepto.min.js"></script>
+	<script type="text/javascript">
+	function setting() {
+			api.openWin({
+				name : 'setting',
+				url : './setting.html',
+				opaque : true,
+				vScrollBarEnabled : false
+			});
+		}
+		function modifyNick(name){
+		}
+		function user_login() {
+			api.openWin({
+				name : 'user_login_frm',
+				url : './user_login_frm.html'
+			});
+		}
+		function init() {
+			islogin = $api.getStorage('islogin');
+			if (islogin) {
+				var requestLogin = $api.byId('requestLogin');
+				requestLogin.innerHTML = "";
+				api.showProgress({
+					title : '加载中...',
+					modal : false
+				});
+				var uid = $api.getStorage('uid');
+				var getUserById = '/user/' + uid;
+				var bodyParam = {
+					id : uid
+				}
+				ajaxRequest(getUserById, 'get', JSON.stringify(bodyParam), function(ret, err) {
+					if (ret) {
+						$api.setStorage('username', ret.username);
+						$api.setStorage('email', ret.email);
+						$api.setStorage('favicon', ret.favicon);
+						var inclu = $api.byId('inclu');
+						var tpl = $api.byId('login').text;
+						var tempFn = doT.template(tpl);
+						inclu.innerHTML = tempFn(ret);
+					} else {
+						api.toast({
+							msg : err.msg
+						})
+					}
+					api.hideProgress();
+				})
+			}
+		}
+
+		function refresh() {
+			document.execCommand('Refresh');
+		} 
+
+		apiready = function() {
+			init();
+			api.addEventListener({
+				name : 'reg_login_successEvent'
+			}, function(ret, err) {
+				if (ret) {
+					init();
+				}
+			});
+			api.addEventListener({
+				name : 'reg_loginout_successEvent'
+			}, function(ret, err) {
+				if (ret) {
+					var requestLogin2 = $api.byId('requestLogin');
+					requestLogin2.innerHTML = "登录";
+					var includ = {
+						username : "",
+						email : ""
+					}
+					var inclu = $api.byId('inclu');
+					var tpl = $api.byId('login').text;
+					var tempFn = doT.template(tpl);
+					inclu.innerHTML = tempFn(includ);
+				}
+			});
+			api.parseTapmode();
+			//doLogin('../login/login_head');
+			api.setRefreshHeaderInfo({
+				visible : true,
+				loadingImg : '../image/refresh.png',
+				bgColor : '#ccc',
+				textColor : '#fff',
+				textDown : '下拉刷新...',
+				textUp : '松开刷新...',
+				showTime : true
+			}, function(ret, err) {
+				//在这里从服务器加载数据，加载完成后调用api.refreshHeaderLoadDone()方法恢复组件到默认状态
+				init();
+				api.refreshHeaderLoadDone();
+			});
+		}
+</script>	
+</html>	

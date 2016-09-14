@@ -51,14 +51,14 @@
 				-webkit-transform: scale(0.5);
 			}
 			/*.aui-btn {
-				padding: 5px 30px;
-			}*/
+			 padding: 5px 30px;
+			 }*/
 			.form-btn {
 				padding: 30px 30px 15px 30px;
 			}
-			.aui-btn-ff9800  {
-				background: #ff9800  !important;
-				color:white !important;
+			.aui-btn-ff9800 {
+				background: #ff9800 !important;
+				color: white !important;
 				border: none;
 				outline: none;
 			}
@@ -68,23 +68,20 @@
 		<div class="aui-content">
 			<div class="aui-noborder">
 				<div class="aui-form">
-					<div class="aui-form">
-						<div class="aui-input-row">
-							<span class="aui-input-addon">商品信息</span>
-							<textarea name="content" class="aui-input" id="msg" placeholder="形容下商品呗~"></textarea>
-						</div>
+					<div class="aui-input-row">
+						<span class="aui-input-addon">名称</span>
+						<input type="text" class="aui-input" placeholder="" id="VGname">
 					</div>
 					<div class="aui-input-row">
-						<span class="aui-input-addon">蔬菜价格</span>
-						<input type="tel" class="aui-input" placeholder="蔬菜价格（/斤）" id="price">
+						<span class="aui-input-addon">价格</span>
+						<input type="tel" class="aui-input" placeholder="价格（/斤）" id="price">
 					</div>
-					<!--<div class="aui-input-row">
-					<span class="aui-input-addon">图文详情</span>
-					<img src="" onclick=""/>
-					</div>-->
-					<div class="aui-input-row" style="padding: 10px 0;">
-						<span class="aui-input-addon">当前坐标为市场坐标</span>
-						<input type="checkbox" class="aui-switch aui-pull-right" id="locationC" checked="">
+					
+					<div class="aui-form">
+						<div class="aui-input-row">
+							<span class="aui-input-addon">详细信息</span>
+							<textarea name="content" class="aui-content" id="msg" placeholder="请输入详细信息"></textarea>
+						</div>
 					</div>
 					<div class="aui-content">
 						<ul class="aui-list-view aui-grid-view" id="imgslist">
@@ -228,7 +225,6 @@
 		// url：上传的url地址
 		// data：上传的文件
 		// callback：上传成功返回地址
-
 		function contrib() {
 			uploadAndShow(imgspath);
 		}
@@ -356,17 +352,21 @@
 												// ########################################
 												// ################### 上传图片 #########################
 												window.imgspath = compressImg;
-												});
+											});
 										}
 									}
+									var li_num = document.getElementById("imgslist").getElementsByTagName("li").length;
+									if (li_num >= 1) {
+										var addimg = $api.byId('addimg');
+										addimg.src = "";
+									}
+								} else {
+									api.toast({
+										msg : '没有选择，或者选择出错'
+									});
 								}
 							});
 							break;
-					}
-					var li_num = document.getElementById("imgslist").getElementsByTagName("li").length;
-					if (li_num >= 1) {
-						var addimg = $api.byId('addimg');
-						addimg.src = "";
 					}
 				});
 			});
@@ -379,59 +379,78 @@
 					title : '正在上传...'
 				});
 				//相关数据获取
-				var method = "post";
-				var price = $api.byId('price').value;
-				var VGmsg = $api.byId('msg').value;
 				var userid = $api.getStorage('uid');
-				var username = $api.getStorage('username'); 
-				var date = new Date().Format("yyyy-MM-dd");
-				var arr = new Array();
-				arr = imgPath.split(".")
-				var userid = $api.getStorage('uid');
-				//获得市场坐标。。
-				
-				var classInfo = {
-					className : "VG_today",
-					fields : [{
-						"name" : "pic",
-						"value" : imgPath,
-						"type" : "file",
-						"filename" : arr[0],
-					}, {
-						"name" : "creatTime",
-						"value" : date
-					}, {
-						"name" : "VGmsg",
-						"value" : VGmsg
-					}, {
-						"name" : "price",
-						"value" : price
-					}, {
-						"name" : "userid",
-						"value" : userid
-					}, {
-						"name" : "marketname",
-						"value" : username
-					}]
-				}
-				var callback = function(ret, err) {
-					if (ret && ret.body.id) {
-						api.hideProgress();
-						api.alert({
-                        msg:"广播成功"
-                        },function(ret,err){
-                        	//coding...
-                        });
-					} else {
-						api.alert({
-							msg : "失败：" + JSON.stringify(err)
-						}, function(ret, err) {
-							//coding...
-						});
-						api.hideProgress();
+				var lon;
+				var lat;
+				model.findById({
+					class : 'user',
+					id : userid
+				}, function(ret, err) {
+					//coding...
+					lon = ret.lon;
+					lat = ret.lat;
+					var method = "post";
+					var price = $api.byId('price').value;
+					var VGname = $api.byId('VGname').value;
+					var VGmsg = $api.byId('msg').value;
+					var username = $api.getStorage('username');
+					var date = new Date().Format("yyyy-MM-dd");
+					var arr = new Array();
+					arr = imgPath.split(".");
+					var userid = $api.getStorage('uid');
+					//获得市场坐标。。
+					var classInfo = {
+						className : "VG_today",
+						fields : [{
+							"name" : "pic",
+							"value" : imgPath,
+							"type" : "file",
+							"filename" : arr[0],
+						}, {
+							"name" : "lon",
+							"value" : lon
+						}, {
+							"name" : "lat",
+							"value" : lat
+						}, {
+							"name" : "creatTime",
+							"value" : date
+						}, {
+							"name" : "VGmsg",
+							"value" : VGmsg
+						}, {
+							"name" : "price",
+							"value" : price
+						}, {
+							"name" : "VGname",
+							"value" : VGname
+						}, {
+							"name" : "userid",
+							"value" : userid
+						}, {
+							"name" : "marketname",
+							"value" : username
+						}]
 					}
-				}
-				ajaxToAPICloud(appId, appKey, method, classInfo, callback);
+					var callback = function(ret, err) {
+						if (ret && ret.body.id) {
+							api.hideProgress();
+							api.alert({
+								msg : "广播成功"
+							}, function(ret, err) {
+								//coding...
+							});
+						} else {
+							api.alert({
+								msg : "失败：" + JSON.stringify(err)
+							}, function(ret, err) {
+								//coding...
+							});
+							api.hideProgress();
+						}
+					}
+					ajaxToAPICloud(appId, appKey, method, classInfo, callback);
+				});
 			} else {
 				api.alert({
 					msg : "亲，要先登录"
