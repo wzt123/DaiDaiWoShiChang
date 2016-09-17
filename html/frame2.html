@@ -67,7 +67,8 @@
 			islogin = $api.getStorage('islogin');
 			if (islogin) {
 				var requestLogin = $api.byId('requestLogin');
-				requestLogin.innerHTML = "";
+				requestLogin.innerHTML = "设置";
+				requestLogin.onclick = function(){setting()};
 				api.showProgress({
 					title : '加载中...',
 					modal : false

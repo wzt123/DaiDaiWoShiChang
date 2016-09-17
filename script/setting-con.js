@@ -97,6 +97,8 @@ function clearData() {
 			msg : '缓存已清空!'
 		});
 	}, 300);
+	var clearD = $api.byId('clearD');
+	clearD.innerHTML = "0M";
 }
 
 function openAbout() {
@@ -137,4 +139,17 @@ function init() {
 
 apiready = function() {
 	init();
+	api.setRefreshHeaderInfo({
+				visible : true,
+				loadingImg : '../image/refresh.png',
+				bgColor : '#ccc',
+				textColor : '#fff',
+				textDown : '下拉刷新...',
+				textUp : '松开刷新...',
+				showTime : true
+			}, function(ret, err) {
+				//在这里从服务器加载数据，加载完成后调用api.refreshHeaderLoadDone()方法恢复组件到默认状态
+				init();
+				api.refreshHeaderLoadDone();
+			});
 };

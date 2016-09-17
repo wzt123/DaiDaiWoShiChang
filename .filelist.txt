@@ -198,6 +198,7 @@
 /A6925440802968/image/image/detail_booking_icon.png
 /A6925440802968/image/image/image/image/card.jpg
 /A6925440802968/image/image/main_index_home_normal.png
+/A6925440802968/image/bg1.jpg
 /A6925440802968/image/image/more_icon_20.png
 /A6925440802968/image/junlei.png
 /A6925440802968/image/image/86.png
@@ -313,6 +314,7 @@
 /A6925440802968/image/image/my_coupon_user_icon_normal.png
 /A6925440802968/image/my_wallet_user_icon_normal.png
 /A6925440802968/image/image/image/bottombtn0402.png
+/A6925440802968/image/bg.jpg
 /A6925440802968/image/image/remark.png
 /A6925441167162/image/bottombtn0401.png
 /A6925440802968/image/image/88.png
